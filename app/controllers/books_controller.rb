@@ -1,5 +1,6 @@
 class BooksController < ApplicationController
 	before_action :find_book, only: [:show, :edit, :update, :destroy]
+	
 	def index
 		@books =Book.all.order("created_at DESC")
 	end
@@ -8,11 +9,12 @@ class BooksController < ApplicationController
 	end
 
 	def new
-		@book = current_user.books.build
+		@book = current_user.book.build
 	end
 
 	def create
-		@book = current_user.books.build(book_params)
+		@book = current_user.book.build(book_params)
+		
 		if @book.save
 			redirect_to root_path
 		else
