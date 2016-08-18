@@ -5,25 +5,16 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-	<nav class="navbar navbar-default">
-		<div class="container">
-			<div class="navbar-header">
-				<%= link_to "My BookStore", root_path, class: "navbar-brand" %>
-			</div>
+	<nav class="blue-grey">
+	    <div class="nav-wrapper">
+		    <a href="#!" class="brand-logo"><%= link_to "My BookStore", root_path, class: "navbar-brand" %></a>
+		    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
 
-			<ul class="nav navbar-nav navbar-right">
-				<% if user_signed_in? %>
-					<li><%=link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-				<% else %>
-					<li><%=link_to "Sign Up", new_user_registration_path %></li>
-					<li><%=link_to "Sign In", new_user_session_path %></li>
-				<% end %>
-			</ul>
-
-			<ul class="nav navbar-nav">
-				<li class="dropdown">
+		    <ul class="right hide-on-med-and-down">
+		    	<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sort Book <span class="caret"></span></a>
 
 					<ul class="dropdown-menu" role="menu">
@@ -37,17 +28,74 @@
 				<% if user_signed_in? %>
 					<li><%=link_to "Add Book", new_book_path %></li>
 				<% end %>
-			</ul>
-		</div>
+		        <li><a href="#">Collaborate</a></li>
+		        <li><a href="#">About Us</a></li>
+		        <li><a href="#">Contact Us</a></li>
+		        <li>
+			        <form>
+				        <div class="input-field">
+				          <input id="search" type="search" required>
+				          <label for="search"><i class="material-icons">search</i></label>
+				          <i class="material-icons">close</i>
+				        </div>
+				    </form>
+			      </li>
+		        <% if user_signed_in? %>
+					<li><%=link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+				<% else %>
+					<li><%=link_to "Sign Up", new_user_registration_path %></li>
+					<li><%=link_to "Sign In", new_user_session_path %></li>
+				<% end %>
+				<li><a class="waves-effect waves-light btn-large">Donate a Book</a></li>
+		    </ul>
+		    <ul class="side-nav" id="mobile-demo">
+		        <li><a href="#">Home</a></li>
+		        <li><a href="#">Collaborate</a></li>
+		        <li><a href="#">About Us</a></li>
+		        <li><a href="#">Contact Us</a></li>
+		        <li><a class="waves-effect waves-light btn-large">Donate Now</a></li>
+		    </ul>
+	    </div>
 	</nav>
+
 
 	<p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <div class="container">
-    	<%= yield %>
+   		<div class="single-book">
+		  	<%= yield %>
+		</div>
     </div>
 	
-
+    <footer class="page-footer blue-grey darken-3">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+              	  <h5 class="white-text">My BookStore, The Gambia</h5>
+              	  <p class="grey-text text-lighten-4"><strong>E-mail:</strong><a href="mailto:info@mybookstore.gm">info@mybookstore.gm</a></p>
+              	  <p class="grey-text text-lighten-4"><strong>Tel:</strong><a href="tel"> +220 742 7992</a></p>
+              	  <p class="grey-text text-lighten-4">Help make education accessible and affordable to all.</p>
+              	  <ul>
+              	  	<li><a class="waves-effect waves-light btn-large">Donate Now</a></li>
+              	  </ul>
+              </div>
+	            <div class="col l4 offset-l2 s12">
+	            	<h5 class="white-text">Links</h5>
+	             	<ul>
+	             	    <li><a class="grey-text text-lighten-3" href="#!">Collaborate</a></li>
+	             	    <li><a class="grey-text text-lighten-3" href="#!">About Us</a></li>
+	              	    <li><a class="grey-text text-lighten-3" href="#!">Contact Us</a></li>
+	               		<li><a class="grey-text text-lighten-3" href="#!">Donors</a></li>
+	                </ul>
+	            </div>
+            </div>
+          </div>
+          <div class="footer-copyright blue-grey darken-4">
+            <div class="container">
+            	&copy; 2016 My Book Store, The Gambia.
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+            </div>
+          </div>
+    </footer>
 </body>
 </html>

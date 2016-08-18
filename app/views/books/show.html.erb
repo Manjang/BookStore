@@ -1,35 +1,159 @@
 <div class="row">
-	<div class="col-md-4">
-		<%= image_tag @book.book_img.url(:book_show), class: "book-show" %>
+	<div class="col s12 m4 l3">
+		<div class="card sticky-action">
+		    <div class="card-image waves-effect waves-block waves-light">
+		  	    <%= image_tag @book.book_img.url(:book_show), class: "book-show activator" %>
+		    </div>
+		    <div class="card-content">
+		   	   <span class="card-title activator grey-text text-darken-4"><%= @book.title %><i class="material-icons right">more_vert</i></span>
+		      	<p class="card-action"><a href="#"><span>Author: </span> <%= @book.author %></a><a href="#" class="right">PDF</a></p>
+		    </div>
+		    <div class="card-reveal">
+		    	  <span class="card-title grey-text text-darken-4"><%= @book.title %><i class="material-icons right">close</i></span>
+		    	  <span class="card-title grey-text text-darken-4 blue-grey"><span>Author: </span> <%= @book.author %></span>
+		   	   <p class="book-desc"><%= @book.description %></p>
+		    </div>
+	  	</div>
+
+
+
+
+
+		<div class="links btn-group center-align">
+			<% if user_signed_in? %>
+				<% if @book.user_id == current_user.id %>
+					<%= link_to "Edit", edit_book_path(@book), class: "btn btn-custom" %>
+					<%= link_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
+				<% end %>
+			<% end -%>
+		</div>
 	</div>
 
-	<div class="col-md-8">
-		<div class="book-info">
+	<div class="col s12 m6 l9">
+		<!-- <div class="book-info">
 			<h2 class="book-title"><%= @book.title %></h2>
 			<h3 class="book-author"><span>Author: </span> <%= @book.author %></h3>
 			<h4 class="book-author"><%= @book.category.name %></h4>
 			<p class="book-desc"><%= @book.description %></p>
+		</div> -->
+
+		<ul class="collapsible popout" data-collapsible="accordion">
+		    <li>
+		     	<div class="collapsible-header active"><i class="material-icons">description</i>Description</div>
+		      	<div class="collapsible-body book-description">
+		      		<h4><%= @book.title %></h4>
+		      		<h5><%= @book.category.name %></h5>
+		      		<p class="book-desc"><%= @book.description %></p>
+		      	</div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header"><i class="material-icons">person_pin</i>About Author</div>
+		      <div class="collapsible-body"><p><span>Author: </span> <%= @book.author %></p></div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header"><i class="material-icons">live_help</i>Need the Book?</div>
+		      <div class="collapsible-body"><p>Contact Us..</p></div>
+		    </li>
+		    <li>
+		      <div class="collapsible-header"><i class="material-icons">comment</i>Review</div>
+		      <div class="collapsible-body">
+		      		<div class="reviews">
+						<h1> Reviews </h1>
+						<%= render @book.reviews %>
+						<a href="#!" class="waves-effect waves-green right-align"><%= link_to "Add Reviews", new_book_review_path(@book), class: "btn-large add-review-button" %></a>
+					</div>
+			   
+			   		
+		      </div>
+		    </li>
+		</ul>  
+	</div>
+
+	
+
+	<div class="col s12 m12 l12">
+		<h4 >Similar Books</h4>
+	</div>
+
+	<div class="similar-books">
+		<div class="col s12 m6 l3">
+			<div class="card sticky-action">
+			    <div class="card-image waves-effect waves-block waves-light">
+			  	    <%= image_tag @book.book_img.url(:book_show), class: "book-show activator" %>
+			    </div>
+			    <div class="card-content">
+			   	   <span class="card-title activator grey-text text-darken-4"><%= @book.title %><i class="material-icons right">more_vert</i></span>
+			      	<p class="card-action"><a href="#"><span>Author: </span> <%= @book.author %></a><a href="#" class="right">PDF</a></p>
+			    </div>
+			    <div class="card-reveal">
+			    	  <span class="card-title grey-text text-darken-4"><%= @book.title %><i class="material-icons right">close</i></span>
+			    	  <span class="card-title grey-text text-darken-4 blue-grey"><span>Author: </span> <%= @book.author %></span>
+			   	   <p class="book-desc"><%= @book.description %></p>
+			    </div>
+		  	</div>
+		</div>
+
+		<div class="col s12 m6 l3">
+			<div class="card sticky-action">
+			    <div class="card-image waves-effect waves-block waves-light">
+			  	    <%= image_tag @book.book_img.url(:book_show), class: "book-show activator" %>
+			    </div>
+			    <div class="card-content">
+			   	   <span class="card-title activator grey-text text-darken-4"><%= @book.title %><i class="material-icons right">more_vert</i></span>
+			      	<p class="card-action"><a href="#"><span>Author: </span> <%= @book.author %></a><a href="#" class="right">PDF</a></p>
+			    </div>
+			    <div class="card-reveal">
+			    	  <span class="card-title grey-text text-darken-4"><%= @book.title %><i class="material-icons right">close</i></span>
+			    	  <span class="card-title grey-text text-darken-4 blue-grey"><span>Author: </span> <%= @book.author %></span>
+			   	   <p class="book-desc"><%= @book.description %></p>
+			    </div>
+		  	</div>
+		</div>
+
+		<div class="col s12 m6 l3">
+			<div class="card sticky-action">
+			    <div class="card-image waves-effect waves-block waves-light">
+			  	    <%= image_tag @book.book_img.url(:book_show), class: "book-show activator" %>
+			    </div>
+			    <div class="card-content">
+			   	   <span class="card-title activator grey-text text-darken-4"><%= @book.title %><i class="material-icons right">more_vert</i></span>
+			      	<p class="card-action"><a href="#"><span>Author: </span> <%= @book.author %></a><a href="#" class="right">PDF</a></p>
+			    </div>
+			    <div class="card-reveal">
+			    	  <span class="card-title grey-text text-darken-4"><%= @book.title %><i class="material-icons right">close</i></span>
+			    	  <span class="card-title grey-text text-darken-4 blue-grey"><span>Author: </span> <%= @book.author %></span>
+			   	   <p class="book-desc"><%= @book.description %></p>
+			    </div>
+		  	</div>
+		</div>
+
+		<div class="col s12 m6 l3">
+			<div class="card sticky-action">
+			    <div class="card-image waves-effect waves-block waves-light">
+			  	    <%= image_tag @book.book_img.url(:book_show), class: "book-show activator" %>
+			    </div>
+			    <div class="card-content">
+			   	   <span class="card-title activator grey-text text-darken-4"><%= @book.title %><i class="material-icons right">more_vert</i></span>
+			      	<p class="card-action"><a href="#"><span>Author: </span> <%= @book.author %></a><a href="#" class="right">PDF</a></p>
+			    </div>
+			    <div class="card-reveal">
+			    	  <span class="card-title grey-text text-darken-4"><%= @book.title %><i class="material-icons right">close</i></span>
+			    	  <span class="card-title grey-text text-darken-4 blue-grey"><span>Author: </span> <%= @book.author %></span>
+			   	   <p class="book-desc"><%= @book.description %></p>
+			    </div>
+		  	</div>
 		</div>
 	</div>
 </div>
 
-<div class="row">
-	<div class="col-md-12">
-		<div class="reviews">
-			<h1> Reviews </h1>
-			<%= render @book.reviews %>
-			<div>
-				<%= link_to "Add Reviews", new_book_review_path(@book), class: "btn-custom" %>
-			</div>
-		</div>
-	</div>
-</div>
 
-<div class="links btn-group">
-	<% if user_signed_in? %>
-		<% if @book.user_id == current_user.id %>
-			<%= link_to "Edit", edit_book_path(@book), class: "btn btn-custom" %>
-			<%= link_to "Delete", book_path(@book), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-custom" %>
-		<% end %>
-	<% end -%>
-</div>
+
+<script>
+	$('.review-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>

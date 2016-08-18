@@ -1,15 +1,46 @@
+<div class="container">
+
 <h1 class="current-category"><%= params[:category] %></h1>
 
-<% if @books.count == 0 %>
-	<h3>There are no books in this category</h3>
-<% else %>
 	<div class="row">
-		<% @books.each do |book| %>
-			<div class="col-md-3">
-				<a href="/books/ <%= book.id %>">
-					<%= image_tag book.book_img.url(:book_index), class: "book" %>
-				</a>
+		<div class="col s12 m8 l9">
+			<% if @books.count == 0 %>
+				<h3>There are no books in this category</h3>
+			<% else %>
+				<div class="row">
+					<% @books.each do |book| %>
+						<div class="col s12 m6 l4">
+							<a href="/books/ <%= book.id %>">
+								<%= image_tag book.book_img.url(:book_index), class: "book" %>
+							</a>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+		<div class="col s12 m4 l3 z-depth-3 sidebar-offcanvas" id="sidebar" role="navigation">
+		    <ul class="nav category-nav"> <h4>Categories</h4>
+		        <li class="active"><a href="#">Programming</a></li>
+		        <li><a href="#">Language</a></li>
+		        <li><a href="#">Mathematics</a></li>
+		        <li><a href="#">Electronics</a></li>              
+		    </ul>
+
+		    <div class="card sticky-action">
+		    	<h5>Book of the Week</h5>
+			    <div class="card-image waves-effect waves-block waves-light">
+			      <img class="activator" src="http://localhost:3000/system/books/book_imgs/000/000/012/book_show/cover_359x475.jpg">
+			    </div>
+			    <div class="card-content">
+			      <span class="card-title activator grey-text text-darken-4">More Info.<i class="material-icons right">more_vert</i></span>
+			      <p><a href="#">This is a link</a></p>
+			    </div>
+			    <div class="card-reveal">
+			      <span class="card-title grey-text text-darken-4"><i class="material-icons right">close</i></span>
+			      <p>Advanced Java Game Programming teaches you how to create desktop and Internet computer games using the latest Java programming language techniques. Whereas other Java game programming books focus on introductory Java material, this book covers game programming for experienced Java developers.</p>
+			      <a class="waves-effect waves-light btn">Get a Copy</a>
+			    </div>
 			</div>
-		<% end %>
+		</div>
 	</div>
-<% end %>
+</div>

@@ -17,6 +17,13 @@
 @import url(https://fonts.googleapis.com/css?family=Lato); 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "materialize";
+@import "materialize/extras/nouislider";
+
+@import "materialize/components/color";
+$primary-color: color("blue", "lighten-2") !default;
+@import 'materialize';
+
 
 /* Variables, mixins, etc.. */
 
@@ -28,146 +35,70 @@
 	padding: 0.6em 0.6em;
 }
 
-
-/* General styles */
+html {
+	font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
 
 body {
-	background: -webkit-linear-gradient(40deg, #d1edf0 10%, #ecc8c6 100%);
-  background:    -moz-linear-gradient(40deg, #d1edf0 10%, #ecc8c6 100%);
-  background:     -ms-linear-gradient(40deg, #d1edf0 10%, #ecc8c6 100%);
-  background:      -o-linear-gradient(40deg, #d1edf0 10%, #ecc8c6 100%);
-  background:         linear-gradient(40deg, #d1edf0 10%, #ecc8c6 100%);
-	font-family: 'Lato', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+main {
+   flex: 1 0 auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	font-family: 'Lato', sans-serif;
-	font-weight: 200;
-	text-transform: uppercase;
+nav {
+	height: 75px !important;
 }
 
-p.alert, p.notice {
-	margin: 0;
+.nav-wrapper {
+	padding-top: 12px;
 }
 
-
-/* Navbar/navigation styles */
-
-.navbar {
-	font-family: 'Lato', sans-serif;
-	text-transform: uppercase;
-}
-.navbar-default {
-	background-color: #fff;
-	padding-bottom: 5px;
-	padding-top: 5px;
-
-	.navbar-nav > li > a {
-		color: #222;
-		&:hover {
-			color: darken(#bdbdbd, 5%);
-			transition: 0.5s;
-		}
-	}
-
-	.navbar-header {
-
-		.navbar-brand {
-			color: #A77DC2;
-			letter-spacing: 1.4px;
-			text-transform: uppercase;
-			font-size: 2.3em;
-			font-weight: bold;
-		}
-
-	}
-
-	.dropdown-menu > li > a:hover {
-		background-color: darken(#bdbdbd, 5%);
-		color: #fff;
-	}
-
-	.navbar-nav > .open > a, .navbar-nav > .open > a:hover, .navbar-nav > .open > a:focus {
-		background-color: darken(#bdbdbd, 5%);
-		color: #fff;	
-	}
-
+.category-nav {
+	padding-bottom: 15px;
+	margin-bottom: 95px;
 }
 
-.dropdown-menu > .active > a {
-	background-color: #bdbdbd;
+.single-book {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.right {
+	float: right;
+}
+
+a {
+	color: #AAA;
+}
+
+a:hover {
 	color: #fff;
+	text-decoration: none;
 }
 
-
-/* Button/link styles */
-
-.btn-custom {
-	color: darken(#bdbdbd, 5%);
-	background-color: #fff;
-	border: 1px solid darken(#bdbdbd, 5%);
-	padding: 8px 20px;
-	border-radius: 0px;
-	font-family: 'Lato', sans-serif;
-	&:hover {
-		text-decoration: none;
-		background-color: darken(#bdbdbd, 5%);
-		color: #fff;
-		transition: 0.5s;
-	}
-}
-
-.btn-custom2 {
-	color: #333;
-	background-color: #fff;
-	border: 1px solid #222;
-	padding: 8px 20px;
-	border-radius: 0px;
-	font-family: 'Lato', sans-serif;
-	&:hover {
-		text-decoration: none;
-		background-color: #333;
-		color: #fff;
-		transition: 0.5s;
-	}	
-}
-
-.links {
-
-	.btn-custom {
-		padding: 3px 10px;
-		font-weight: 300;
-	}
-
-}
-
-.play-links {
-
-	.btn-custom {
-		padding: 3px 10px;
-		font-weight: 300;
-		margin-top: 40px;	
-	}
-
-}
 
 /* Book styles */
 
 .book {
-	height: 350px;
-	width: 250px;
+	height: 300px;
+	width: 200px;
 	margin-bottom: 40px;
 	@include background-tile;
 }
 
 .book-show {
-	height: 475px;
+	height: 375px;
 	width: 325px;
 	@include background-tile;
 }
 
 .book-info {
 	@include background-tile;
+	margin-left: 30px;
 
 	.book-title {
 		margin-top: 0;
@@ -207,6 +138,10 @@ p.alert, p.notice {
 
 }
 
+.book-description {
+	padding: 20px;	
+}
+
 
 /* current-category styles */
 
@@ -216,11 +151,18 @@ p.alert, p.notice {
 
 
 /* Reviews styles */
+.review-button {
+	margin-top: 150px;
+}
+
+.add-review-button {
+	margin-left: 30px;
+}
 
 .reviews {
 
 	@include background-tile;
-	margin-top: 40px;
+	margin-top: 3px;
 
 	h1 {
 		margin-top: 0;
@@ -233,6 +175,7 @@ p.alert, p.notice {
 		border-bottom: 1px solid gainsboro;
 		margin-bottom: 15px;
 		padding-bottom: 10px;
+		margin: 5px 0 5px 30px;
 
 		.review-comment {
 			font-size: 1.05em;
@@ -306,28 +249,6 @@ p.alert, p.notice {
 			display: block;
 		}
 
-	}
-
-}
-
-
-/* Signup/Login form styles */
-
-.signup-form {
-	@include background-tile;
-
-	h2 {
-		margin-top: 0;
-		font-weight: bold;
-	}
-
-}
-
-.login-form {
-	@include background-tile;
-
-	h2 {
-		margin-top: 0;
 	}
 
 }
